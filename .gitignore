@@ -1,0 +1,33 @@
+# Virtual Environment
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+db.sqlite3
+mydatabase.mysql
+
+# Static files
+staticfiles/
+
+# Media
+media/
+
+# Local development settings
+local_settings.py
+
+# IDE files
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extension
+*.so
+
+# Miscellaneous
+.DS_Store
