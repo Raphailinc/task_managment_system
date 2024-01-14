@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main-content">
+        <h2>Список задач</h2>
+        <ul class="task-list">
+            {% for task in tasks %}
+                <li class="task-item" data-task-url="{% url 'task_detail' task.id %}">
+                    <div class="task-details">
+                        <div class="task-info">
+                            <span class="task-title">{{ task.title }}</span>
+                            <span class="task-status">{{ task.status }}</span>
+                        </div>
+                        <div class="assigned-to">
+                            <span>Исполнитель: {{ task.assigned_to.username }}</span>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'task_create' %}" class="btn btn-primary">Создать новую задачу</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskItems = document.querySelectorAll('.task-item');
+            
+            taskItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const taskUrl = item.getAttribute('data-task-url');
+                    if (taskUrl) {
+                        window.location.href = taskUrl;
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

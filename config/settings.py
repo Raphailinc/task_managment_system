@@ -1,7 +1,10 @@
+from django.db.models import BigAutoField
 from pathlib import Path
 import random
 import string
 import os
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'myapp.tasks',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +42,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'myapp/authentication/templates')],
+        'DIRS': [os.path.join(BASE_DIR, "templates"),
+                 os.path.join(BASE_DIR, "myapp/authentication/templates"),
+                 os.path.join(BASE_DIR, "myapp/tasks/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,7 +64,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'tasks',
         'USER': 'keamil',
-        'PASSWORD': '12345',
+        'PASSWORD': 'KappaPride',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -76,7 +82,7 @@ USE_TZ = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'myapp/authentication/static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
