@@ -8,7 +8,7 @@ class TaskListView(ListView):
     model = Task
     template_name = 'task_list.html'
     context_object_name = 'tasks'
-    allow_empty = True  # Разрешить отображение пустого списка
+    allow_empty = True
 
     def get_queryset(self):
         return Task.objects.all()
