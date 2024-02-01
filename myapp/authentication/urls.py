@@ -1,5 +1,3 @@
-# myapp/authentication/urls.py
-
 from django.urls import path
 from .views import register, home, login_view, logout_view
 

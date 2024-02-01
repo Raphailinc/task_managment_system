@@ -3,6 +3,18 @@
 {% block content %}
     <div class="main-content">
         <h2>Список задач</h2>
+
+        <form method="get" action="{% url 'task_list' %}">
+            <input type="text" name="q" value="{{ query }}" placeholder="Поиск задач">
+            <button type="submit">Искать</button>
+        </form>
+        
+        {% if query %}
+            <p>Текущий запрос: {{ query }}</p>
+        {% else %}
+            <p>Запрос отсутствует или пуст</p>
+        {% endif %}
+
         <ul class="task-list">
             {% for task in tasks %}
                 <li class="task-item" data-task-url="{% url 'task_detail' task.id %}">
@@ -16,8 +28,30 @@
                         </div>
                     </div>
                 </li>
+            {% empty %}
+                <p>Задачи отсутствуют</p>
             {% endfor %}
         </ul>
+
+        <!-- Добавляем пагинацию -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if tasks.has_previous %}
+                    <a href="?page=1">&laquo; первая</a>
+                    <a href="?page={{ tasks.previous_page_number }}">предыдущая</a>
+                {% endif %}
+
+                <span class="current">
+                    Страница {{ tasks.number }} из {{ tasks.paginator.num_pages }}.
+                </span>
+
+                {% if tasks.has_next %}
+                    <a href="?page={{ tasks.next_page_number }}">следующая</a>
+                    <a href="?page={{ tasks.paginator.num_pages }}">последняя &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
         <a href="{% url 'task_create' %}" class="btn btn-primary">Создать новую задачу</a>
     </div>
 

@@ -120,3 +120,26 @@ form button {
     margin-left: 10px;
     color: #888;
 }
+
+/* Дополнительные стили для формы загрузки файла */
+form.upload-form {
+    text-align: left;
+    margin: 20px 0 0;
+}
+
+form.upload-form .form-group {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+form.upload-form .file-input {
+    margin-bottom: -20px;
+}
+
+form.upload-form button {
+    margin-bottom: 0;
+}
+
+.task-files {
+    margin-top: 10px;
+}

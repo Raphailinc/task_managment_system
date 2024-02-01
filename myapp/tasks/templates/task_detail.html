@@ -3,11 +3,39 @@
 {% block title %}Детали задачи{% endblock %}
 
 {% block content %}
-    <h2>{{ task.title }}</h2>
-    <p>{{ task.description }}</p>
-    <p>Исполнитель: {{ task.assigned_to.username }}</p>
-    <p>Статус: {{ task.status }}</p>
+    <div>
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.description }}</p>
+        <p>Исполнитель: {{ task.assigned_to.username }}</p>
+        <p>Статус: {{ task.status }}</p>
 
-    <a href="{% url 'task_update' task.id %}" class="btn btn-primary">Изменить</a>
-    <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Удалить</a>
+        <div>
+            <a href="{% url 'task_update' task.id %}" class="btn btn-primary">Изменить</a>
+            <a href="{% url 'task_delete' task.id %}" class="btn btn-danger">Удалить</a>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="form-group file-input">
+                {{ file_form.as_p }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Загрузить файл</button>
+                <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>              
+
+        {% if task_files %}
+            <div class="task-files">
+                <h3>Файлы задач:</h3>
+                {% for file in task_files %}
+                    <div>
+                        <a href="{{ file.file.url }}" target="_blank">{{ file.file.name }}</a>
+                        <a href="{% url 'view_file' file_id=file.id %}" target="_blank" class="btn btn-info">Просмотр</a>
+                        <a href="{% url 'delete_file' file_id=file.id %}" class="btn btn-danger">Удалить</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
