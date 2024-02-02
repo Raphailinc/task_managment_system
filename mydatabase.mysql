@@ -1,0 +1,4 @@
+CREATE DATABASE tasks;
+CREATE USER 'keamil'@'localhost' IDENTIFIED BY 'KappaPride';
+GRANT ALL PRIVILEGES ON tasks.* TO 'keamil'@'localhost';
+FLUSH PRIVILEGES;
