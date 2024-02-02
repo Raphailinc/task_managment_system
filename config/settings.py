@@ -77,7 +77,7 @@ DATABASES = {
         'NAME': 'tasks',
         'USER': 'keamil',
         'PASSWORD': 'KappaPride',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
