@@ -7,7 +7,6 @@ variables:
 before_script:
   - apt-get update -qy
   - apt-get install -y python3 python3-pip
-  - python3 -m pip install pip --upgrade
   - python3 -m pip install virtualenv
   - virtualenv venv
   - source venv/bin/activate
