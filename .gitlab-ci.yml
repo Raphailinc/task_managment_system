@@ -10,7 +10,7 @@ before_script:
   - python3 -m venv venv
   - source venv/bin/activate
   - python -m pip install -r requirements.txt
-  - apt-get install -y mysql-client
+  - apt-get install -y default-mysql-client
 
 services:
   - mysql
