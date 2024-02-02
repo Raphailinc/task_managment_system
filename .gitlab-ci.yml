@@ -17,6 +17,5 @@ test:
   stage: test
   script:
     - python3 manage.py test
-
-after_script:
-  - deactivate
+  after_script:
+    - deactivate
